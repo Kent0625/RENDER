@@ -5,12 +5,9 @@ import {
   Target, 
   Crosshair, 
   Scale, 
-  LineChart, 
-  ScatterChart, # This might be named differently in lucide-react, I'll check common names. ScatterPlot doesn't exist. 'Activity' or 'TrendingUp'? 'ScatterChart' is not in lucide. 'Dot' maybe? 'Circle'? Let's use generic charts.
-  GitGraph,
-  BarChart3,
+  Activity,
   TrendingUp,
-  Activity
+  GitGraph
 } from "lucide-react";
 import { ModuleType } from "./Dashboard";
 import clsx from "clsx";
