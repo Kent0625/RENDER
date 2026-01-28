@@ -28,7 +28,7 @@ export default function Sidebar({ activeModule, setActiveModule }: SidebarProps)
   ];
 
   return (
-    <aside className="w-64 bg-white dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800 flex flex-col">
+    <aside className="h-full w-full bg-white dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800 flex flex-col">
       <div className="p-6 border-b border-gray-200 dark:border-gray-800">
         <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
           ML Evaluator
