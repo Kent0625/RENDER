@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from "react";
 import SliderControl from "../ui/SliderControl";
 import ConfusionMatrixViz from "../ui/ConfusionMatrixViz";
+import { generateMultiClassMatrix } from "@/lib/utils";
 
 export default function AccuracyModule() {
   const [mode, setMode] = useState<"binary" | "multi">("binary");
@@ -21,29 +22,7 @@ export default function AccuracyModule() {
   const binaryAccuracy = (tp + tn) / (tp + tn + fp + fn);
 
   const multiMatrix = useMemo(() => {
-    // Deterministic simulation based on noise
-    const classes = 3;
-    const perClass = Math.floor(samples / classes);
-    const matrix = Array(classes).fill(0).map(() => Array(classes).fill(0));
-    
-    // Distribute
-    for(let i=0; i<classes; i++) {
-        const correct = Math.floor(perClass * (1 - noise / 100));
-        const error = perClass - correct;
-        
-        matrix[i][i] = correct;
-        // Distribute error to other classes
-        const errorPerClass = Math.floor(error / (classes - 1));
-        let remainder = error % (classes - 1);
-        
-        for(let j=0; j<classes; j++) {
-            if (i !== j) {
-                matrix[i][j] = errorPerClass + (remainder > 0 ? 1 : 0);
-                remainder--;
-            }
-        }
-    }
-    return matrix;
+    return generateMultiClassMatrix(samples, noise);
   }, [samples, noise]);
 
   const multiAccuracy = useMemo(() => {
