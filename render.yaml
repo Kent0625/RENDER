@@ -1,12 +1,9 @@
 services:
-  - type: web
-    name: ml-eval-metrics
-    env: node
+  - type: static
+    name: metric-master
+    env: static
+    rootDir: metric-master
     buildCommand: npm install && npm run build
-    startCommand: npm start
+    staticPublishPath: dist
     plan: free
     autoDeploy: true
-    healthCheckPath: /api/health
-    envVars:
-      - key: NODE_VERSION
-        value: 20.11.0
